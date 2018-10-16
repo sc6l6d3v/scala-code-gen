@@ -6,10 +6,10 @@ package net.yefremov.sample.codegen.schema
  */
 case class TypeName(fullName: String) {
 
-  private def lastDot = fullName.lastIndexOf('.')
+  private def lastDot: List[String] = fullName.split("\\.").toList
 
-  def packageName: String = fullName.take(lastDot)
+  def packageName: String = lastDot.init.mkString(".")
 
-  def shortName: String = fullName.drop(lastDot + 1)
+  def shortName: String = lastDot.last
 
 }
